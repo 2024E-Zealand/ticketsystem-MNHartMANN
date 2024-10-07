@@ -37,5 +37,19 @@ namespace TicketTestProjekt
             // Assert
             Assert.AreEqual("Car", result);
         }
+
+        /// <summary>
+        /// Tests that an exception is thrown when the license plate is more than 7 characters.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void LicensePlate_ShouldThrowException_WhenLongerThan7Characters()
+        {
+            // Arrange
+            Vehicle car = new Car();
+
+            // Act
+            car.LicensePlate = "AB123456";
+        }
     }
 }

@@ -37,5 +37,21 @@ namespace TicketTestProjekt
             // Assert
             Assert.AreEqual("MC", result);
         }
+
+        /// <summary>
+        /// Tests if a license plate with 7 characters is accepted.
+        /// </summary>
+        [TestMethod]
+        public void LicensePlate_ShouldAcceptValidLicensePlate()
+        {
+            // Arrange
+            Vehicle mc = new MC();
+
+            // Act
+            mc.LicensePlate = "AB12345";
+
+            // Assert
+            Assert.AreEqual("AB12345", mc.LicensePlate);
+        }
     }
 }
