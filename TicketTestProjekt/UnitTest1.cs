@@ -1,4 +1,5 @@
 using TicketClassLibrary;
+using StoreBaeltTicketLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TicketTestProjekt
@@ -6,36 +7,28 @@ namespace TicketTestProjekt
     [TestClass()]
     public class CarTests
     {
-        /// <summary>
-        /// Tests if the Car price includes a 5% discount when Brobizz is used.
-        /// </summary>
-        [TestMethod]
-        public void Car_Price_ShouldApplyBrobizzDiscount()
+        [TestMethod()]
+        public void CarPrice_ApplyWeekendDiscount_Saturday()
         {
-            // Arrange
-            var car = new Car { Brobizz = true };
-
-            // Act
-            double result = car.Price();
-
-            // Assert
-            Assert.AreEqual(240.0 * 0.95, result, 0.01);
+            var car = new StoreBaeltCar { Date = new DateTime(2024, 10, 5) }; // Saturday
+            double price = car.Price();
+            Assert.AreEqual(192.0, price, 0.01); // 240 - 20%
         }
 
-        /// <summary>
-        /// Tests if the Car price remains unchanged without Brobizz.
-        /// </summary>
-        [TestMethod]
-        public void Car_Price_ShouldNotApplyBrobizzDiscount_IfNotUsed()
+        [TestMethod()]
+        public void CarPrice_NoDiscount_Weekday()
         {
-            // Arrange
-            var car = new Car { Brobizz = false };
+            var car = new StoreBaeltCar { Date = new DateTime(2024, 10, 4) }; // Friday
+            double price = car.Price();
+            Assert.AreEqual(240.0, price); // No discount on weekdays
+        }
 
-            // Act
-            double result = car.Price();
-
-            // Assert
-            Assert.AreEqual(240.0, result);
+        [TestMethod()]
+        public void CarPrice_ApplyBrobizzDiscount_AfterWeekendDiscount()
+        {
+            var car = new StoreBaeltCar { Date = new DateTime(2024, 10, 5), Brobizz = true }; // Saturday
+            double priceWithBrobizz = car.Price();
+            Assert.AreEqual(182.40, priceWithBrobizz, 0.01); // (240 - 20%) - 5%
         }
 
         /// <summary>

@@ -1,41 +1,34 @@
 ﻿using TicketClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using StoreBaeltTicketLibrary;
 
 namespace TicketTestProjekt
 {
     [TestClass()]
     public class MCTests
     {
-        /// <summary>
-        /// Tests if the MC price includes a 5% discount when Brobizz is used.
-        /// </summary>
-        [TestMethod]
-        public void MC_Price_ShouldApplyBrobizzDiscount()
+        [TestMethod()]
+        public void MCPrice_NoDiscount_Weekend()
         {
-            // Arrange
-            var mc = new MC { Brobizz = true };
-
-            // Act
-            double result = mc.Price();
-
-            // Assert
-            Assert.AreEqual(125.0 * 0.95, result, 0.01);
+            var mc = new StoreBaeltMC { Date = new DateTime(2024, 10, 5) }; // Saturday
+            double price = mc.Price();
+            Assert.AreEqual(125.0, price); // No discount for MC on weekends
         }
 
-        /// <summary>
-        /// Tests if the MC price remains unchanged without Brobizz.
-        /// </summary>
-        [TestMethod]
-        public void MC_Price_ShouldNotApplyBrobizzDiscount_IfNotUsed()
+        [TestMethod()]
+        public void MCPrice_NoDiscount_Weekday()
         {
-            // Arrange
-            var mc = new MC { Brobizz = false };
+            var mc = new StoreBaeltMC { Date = new DateTime(2024, 10, 4) }; // Friday
+            double price = mc.Price();
+            Assert.AreEqual(125.0, price); // No discount on weekdays
+        }
 
-            // Act
-            double result = mc.Price();
-
-            // Assert
-            Assert.AreEqual(125.0, result);
+        [TestMethod()]
+        public void MCPrice_ApplyBrobizzDiscount()
+        {
+            var mc = new StoreBaeltMC { Date = new DateTime(2024, 10, 4), Brobizz = true }; // Weekday
+            double priceWithBrobizz = mc.Price();
+            Assert.AreEqual(118.75, priceWithBrobizz, 0.01); // 125 - 5%
         }
 
         /// <summary>

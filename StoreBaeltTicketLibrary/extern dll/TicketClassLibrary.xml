@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TicketClassLibrary</name>
+    </assembly>
+    <members>
+        <member name="M:TicketClassLibrary.Car.Price">
+            <summary>
+            Returns price of a car with or without Brobizz discount.
+            </summary>
+        </member>
+        <member name="M:TicketClassLibrary.MC.Price">
+            <summary>
+            Returns price of a MC with or without Brobizz discount.
+            </summary>
+        </member>
+        <member name="T:TicketClassLibrary.Vehicle">
+            <summary>
+            Is a class of vehicle wich Car and MC uses, with normal properties of license plate and date.
+            </summary>
+        </member>
+        <member name="P:TicketClassLibrary.Vehicle.LicensePlate">
+            <summary>
+            Gets or sets the license plate of a vehicle, and throws an exception if it is more than 7 characters.
+            </summary>
+        </member>
+        <member name="P:TicketClassLibrary.Vehicle.Date">
+            <summary>
+            Gets or sets the date associated with a vehicle.
+            </summary>
+        </member>
+        <member name="M:TicketClassLibrary.Vehicle.Price">
+            <summary>
+            Returns the price of a vehicle. This method must be overridden by the classes that uses it.
+            </summary>
+        </member>
+        <member name="M:TicketClassLibrary.Vehicle.VehicleType">
+            <summary>
+            Returns the type of a vehicle. This method must be overridden by the classes that uses it.
+            </summary>
+        </member>
+    </members>
+</doc>

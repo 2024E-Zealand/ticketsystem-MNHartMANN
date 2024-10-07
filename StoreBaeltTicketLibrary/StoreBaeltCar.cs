@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TicketClassLibrary;
 
-namespace TicketClassLibrary
+namespace StoreBaeltTicketLibrary
 {
-    public class Car : Vehicle
+    public class StoreBaeltCar : Car
     {
         /// <summary>
-        /// Returns the price of a car with or without Brobizz discount and applies weekend discount.
+        /// Returns the price of a car with weekend and Brobizz discounts applied.
         /// </summary>
         public override double Price()
         {
@@ -29,14 +25,6 @@ namespace TicketClassLibrary
             }
 
             return finalPrice;
-        }
-
-        /// <summary>
-        /// Returns the vehicle type as a string.
-        /// </summary>
-        public override string VehicleType()
-        {
-            return "Car";
         }
     }
 }
