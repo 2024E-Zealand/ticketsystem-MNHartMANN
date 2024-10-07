@@ -33,6 +33,8 @@ namespace TicketClassLibrary
         /// </summary>
         public DateTime Date { get; set; }
 
+        public bool Brobizz { get; set; }
+
         /// <summary>
         /// Returns the price of a vehicle. This method must be overridden by the classes that uses it.
         /// </summary>

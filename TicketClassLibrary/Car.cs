@@ -8,9 +8,17 @@ namespace TicketClassLibrary
 {
     public class Car : Vehicle
     {
+        /// <summary>
+        /// Returns price of a car with or without Brobizz discount.
+        /// </summary>
         public override double Price()
         {
-            return 240.0;
+            double basePrice = 240.0;
+            if (Brobizz)
+            {
+                return basePrice * 0.95;
+            }
+            return basePrice;
         }
 
         public override string VehicleType()

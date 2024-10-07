@@ -7,13 +7,29 @@ namespace TicketTestProjekt
     public class MCTests
     {
         /// <summary>
-        /// Tests that the Price method returns the price 125.
+        /// Tests if the MC price includes a 5% discount when Brobizz is used.
         /// </summary>
         [TestMethod]
-        public void Price_ShouldReturnCorrectPrice()
+        public void MC_Price_ShouldApplyBrobizzDiscount()
         {
             // Arrange
-            var mc = new MC();
+            var mc = new MC { Brobizz = true };
+
+            // Act
+            double result = mc.Price();
+
+            // Assert
+            Assert.AreEqual(125.0 * 0.95, result, 0.01);
+        }
+
+        /// <summary>
+        /// Tests if the MC price remains unchanged without Brobizz.
+        /// </summary>
+        [TestMethod]
+        public void MC_Price_ShouldNotApplyBrobizzDiscount_IfNotUsed()
+        {
+            // Arrange
+            var mc = new MC { Brobizz = false };
 
             // Act
             double result = mc.Price();

@@ -7,13 +7,29 @@ namespace TicketTestProjekt
     public class CarTests
     {
         /// <summary>
-        /// Tests that the Price method returns the price 240.
+        /// Tests if the Car price includes a 5% discount when Brobizz is used.
         /// </summary>
         [TestMethod]
-        public void Price_ShouldReturnCorrectPrice()
+        public void Car_Price_ShouldApplyBrobizzDiscount()
         {
             // Arrange
-            var car = new Car();
+            var car = new Car { Brobizz = true };
+
+            // Act
+            double result = car.Price();
+
+            // Assert
+            Assert.AreEqual(240.0 * 0.95, result, 0.01);
+        }
+
+        /// <summary>
+        /// Tests if the Car price remains unchanged without Brobizz.
+        /// </summary>
+        [TestMethod]
+        public void Car_Price_ShouldNotApplyBrobizzDiscount_IfNotUsed()
+        {
+            // Arrange
+            var car = new Car { Brobizz = false };
 
             // Act
             double result = car.Price();
